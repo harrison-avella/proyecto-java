@@ -1,10 +1,12 @@
 package com.comit.bikerama.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -12,9 +14,12 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Product implements Serializable {
     private static final long serialVersionUID= 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private BigDecimal cantMin = BigDecimal.TEN;
     private BigDecimal cantCurrent = BigDecimal.ZERO;
@@ -37,6 +42,7 @@ public class Product implements Serializable {
     }
 
     public boolean isThereStored(){
-        return cantCurrent.compareTo(cantMin) <=0; // da cero si son iguales -1 si es menos y 1 si es mayor
+        return cantCurrent.compareTo(cantMin) <=0;
     }
+    // el compareTo da cero si son iguales -1 si es menos y 1 si es mayor
 }
