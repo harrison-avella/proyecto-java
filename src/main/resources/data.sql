@@ -1,3 +1,5 @@
+
+-- No estoy usando esta tabla actualmente
 CREATE TABLE `USERS` (
                          `ID` int PRIMARY KEY AUTO_INCREMENT,
                          `USER_NAME` varchar(255),
@@ -25,6 +27,5 @@ CREATE TABLE `PRODUCTS` (
                             `NAME` varchar(255),
                             `DESCRIPTION` varchar(255),
                             `PRICE` int,
-                            `CANT` int,
-                            `created_at` datetime DEFAULT (now())
+                            `CANT` int
 );

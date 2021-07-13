@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,15 +21,17 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private BigDecimal cantMin = BigDecimal.TEN;
-    private BigDecimal cantCurrent = BigDecimal.ZERO;
+    //private BigDecimal cantMin = BigDecimal.TEN;
+    //private BigDecimal cantCurrent = BigDecimal.ZERO;
     private String name ="";
     private String description ="";
     private BigDecimal price = BigDecimal.ZERO;
     private String supplier = "";
-    private BigDecimal iva = new BigDecimal("1.21");
 
-    private BigDecimal getPrice(){
+
+    //private BigDecimal iva = new BigDecimal("1.21");
+
+   /* private BigDecimal getPrice(){
         return price;
     }
 
@@ -45,4 +47,7 @@ public class Product implements Serializable {
         return cantCurrent.compareTo(cantMin) <=0;
     }
     // el compareTo da cero si son iguales -1 si es menos y 1 si es mayor
+
+*/
 }
+
