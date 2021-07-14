@@ -8,7 +8,7 @@ public class BikeramaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BikeramaApplication.class, args);
-		System.out.println("Esto es un texto");
+		
 	}
 
 }

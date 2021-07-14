@@ -1,10 +1,11 @@
-package com.comit.bikerama.repository;
+package com.comit.bikerama.repositories;
 
-import com.comit.bikerama.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+
+import com.comit.bikerama.models.User;
 
 /*
 funciona para toda la interfaz aca, se ejecutatodo o nada si falla hace un rollback de que nos e pude guardar, para bases de datos transasionales

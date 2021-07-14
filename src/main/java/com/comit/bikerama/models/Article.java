@@ -1,12 +1,19 @@
-package com.comit.bikerama.model;
+package com.comit.bikerama.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 @Getter
@@ -20,8 +27,17 @@ public class Article implements Serializable {
     private Long id;
     private BigDecimal cant = BigDecimal.ZERO;
     private  BigDecimal priceUnit = BigDecimal.ONE;
-    @ManyToOne
+    
+    @OneToOne
     private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "shoping_cart_id")
+    private ShoppingCart shoppingCart;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     public BigDecimal getTotalPrice(){
         return priceUnit.multiply(cant);

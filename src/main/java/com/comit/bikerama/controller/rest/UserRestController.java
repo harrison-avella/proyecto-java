@@ -1,7 +1,8 @@
 package com.comit.bikerama.controller.rest;
 
-import com.comit.bikerama.model.User;
-import com.comit.bikerama.service.UserService;
+import com.comit.bikerama.models.User;
+import com.comit.bikerama.services.impl.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

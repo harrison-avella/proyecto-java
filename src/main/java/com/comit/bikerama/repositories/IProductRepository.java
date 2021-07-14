@@ -1,10 +1,11 @@
-package com.comit.bikerama.repository;
+package com.comit.bikerama.repositories;
 
-import com.comit.bikerama.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+
+import com.comit.bikerama.models.Product;
 
 @Repository
 @Transactional

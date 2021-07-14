@@ -1,7 +1,8 @@
 package com.comit.bikerama.init;
 
-import com.comit.bikerama.model.User;
-import com.comit.bikerama.repository.IUserRepository;
+import com.comit.bikerama.models.User;
+import com.comit.bikerama.repositories.IUserRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

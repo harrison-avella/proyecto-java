@@ -1,15 +1,16 @@
-package com.comit.bikerama.service;
+package com.comit.bikerama.services.impl;
 
-import com.comit.bikerama.model.Product;
-import com.comit.bikerama.repository.IProductRepository;
-import com.comit.bikerama.repository.IUserRepository;
+import com.comit.bikerama.models.Product;
+import com.comit.bikerama.repositories.IProductRepository;
+import com.comit.bikerama.services.impl.IService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ProductService implements IService<Product,Long>{
+public class ProductService implements IProducService{
 
 
     private final IProductRepository iproductRepository;
@@ -26,22 +27,23 @@ public class ProductService implements IService<Product,Long>{
 
     @Override
     public Product getById(Long id) {
-        return null;
+        return iproductRepository.findById(id).get();
     }
+    
 
     @Override
     public Product save(Product product) {
-        return null;
+        return iproductRepository.save(product);
     }
 
     @Override
     public Product update(Product product) {
-        return null;
+        return iproductRepository.save(product);
     }
 
     @Override
     public void delete(Long id) {
-
+        iproductRepository.delete(id);
     }
 
     /*public Product save(Product product){

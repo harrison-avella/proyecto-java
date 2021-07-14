@@ -1,7 +1,8 @@
 package com.comit.bikerama.controller;
 
 
-import com.comit.bikerama.service.UserService;
+import com.comit.bikerama.services.impl.UserService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class UserController{
 
     @RequestMapping("/products")
     public String list(Model model){
-        model.addAttribute("persons", userService.usersList());
+        model.addAttribute("persons", userService.findAll());
         return "listado";
     }
 }

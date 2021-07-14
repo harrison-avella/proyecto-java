@@ -1,11 +1,11 @@
 package com.comit.bikerama.controller;
 
-import com.comit.bikerama.model.Product;
-import com.comit.bikerama.service.ProductService;
+import com.comit.bikerama.models.Product;
+import com.comit.bikerama.services.impl.ProductService;
+import com.comit.bikerama.services.impl.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.comit.bikerama.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
@@ -29,7 +29,6 @@ public class ProductController {
     public List<Product> getAll(){
         return productService.getAll();
     }
-
 
     @GetMapping("/products/{id}")
     public Product getById(@PathVariable(name = "id") Long id){

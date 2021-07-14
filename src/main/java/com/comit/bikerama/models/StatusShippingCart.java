@@ -1,4 +1,4 @@
-package com.comit.bikerama.model;
+package com.comit.bikerama.models;
 
 public enum StatusShippingCart {
     ACTIVO, FINALIZADO, CANCELADO, PAGADO, DESPACHADO;
