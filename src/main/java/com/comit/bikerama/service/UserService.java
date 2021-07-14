@@ -1,7 +1,7 @@
 package com.comit.bikerama.service;
 
 import com.comit.bikerama.model.User;
-import com.comit.bikerama.repository.UserRepository;
+import com.comit.bikerama.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,14 +9,15 @@ import java.util.List;
 
 @Service
 public class UserService {
-    private UserRepository userRepository;
+
+    private final IUserRepository iuserRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository){
-        this.userRepository = userRepository;
+    public UserService(IUserRepository iuserRepository){
+        this.iuserRepository = iuserRepository;
     }
 
     public List<User> usersList(){
-        return userRepository.findAll();
+        return iuserRepository.findAll();
     }
 }

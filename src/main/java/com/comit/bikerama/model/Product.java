@@ -21,14 +21,14 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //private BigDecimal cantMin = BigDecimal.TEN;
-    //private BigDecimal cantCurrent = BigDecimal.ZERO;
     private String name ="";
     private String description ="";
     private BigDecimal price = BigDecimal.ZERO;
     private String supplier = "";
 
 
+    //private BigDecimal cantMin = BigDecimal.TEN;
+    //private BigDecimal cantCurrent = BigDecimal.ZERO;
     //private BigDecimal iva = new BigDecimal("1.21");
 
    /* private BigDecimal getPrice(){

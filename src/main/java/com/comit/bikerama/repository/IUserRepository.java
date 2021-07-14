@@ -12,6 +12,6 @@ cuida de que se ejuten un conjunto de instrucciones por separado, inconveniente 
  */
 @Repository
 @Transactional
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface IUserRepository extends JpaRepository<User,Long> {
 
 }

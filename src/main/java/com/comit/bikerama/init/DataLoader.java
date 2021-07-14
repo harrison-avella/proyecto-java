@@ -1,7 +1,7 @@
 package com.comit.bikerama.init;
 
 import com.comit.bikerama.model.User;
-import com.comit.bikerama.repository.UserRepository;
+import com.comit.bikerama.repository.IUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,10 @@ public class DataLoader implements ApplicationRunner {
 
     private static final Logger logger = LoggerFactory.getLogger(DataLoader.class);
 
-    private final UserRepository userRepository;
+    private final IUserRepository userRepository;
 
     @Autowired
-    public DataLoader(UserRepository userRepository){
+    public DataLoader(IUserRepository userRepository){
         this.userRepository = userRepository;
     }
 

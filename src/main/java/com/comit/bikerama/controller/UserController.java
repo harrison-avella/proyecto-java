@@ -2,22 +2,27 @@ package com.comit.bikerama.controller;
 
 
 import com.comit.bikerama.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("Users")
+@RestController
+@RequestMapping("/api")
 public class UserController{
-    private UserService userService;
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService){
         this.userService = userService;
     }
 
-    @RequestMapping("/list")
+    @RequestMapping("/products")
     public String list(Model model){
         model.addAttribute("persons", userService.usersList());
         return "listado";

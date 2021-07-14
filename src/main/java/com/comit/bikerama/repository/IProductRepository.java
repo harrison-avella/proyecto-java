@@ -8,6 +8,6 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface ProductRepository extends JpaRepository<Product,Long> {
+public interface IProductRepository extends JpaRepository<Product,Long> {
 
 }
