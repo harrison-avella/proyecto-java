@@ -1,7 +1,7 @@
 package com.comit.bikerama.services.impl;
 
 import com.comit.bikerama.models.Role;
-import com.comit.bikerama.models.ShoppingCart;
+import com.comit.bikerama.models.Cart;
 import com.comit.bikerama.models.User;
 import com.comit.bikerama.repositories.IRoleRepository;
 import com.comit.bikerama.repositories.IUserRepository;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserService implements IUserService{
@@ -35,13 +34,13 @@ public class UserService implements IUserService{
 
     //For test purposes
     @Override
-    public List<User> getAll(){
+    public List<User> findAll(){
         return iUserRepository.findAll();
     }
 
     @Override
-    public User getById(Long id){
-        return iUserRepository.getById(id);
+    public User findById(Long id){
+        return iUserRepository.findById(id).get();
     }
 
     @Override
@@ -57,24 +56,21 @@ public class UserService implements IUserService{
 
     @Override
     public User findByUserName(String userName) {
-        // TODO Auto-generated method stub
-        return null;
+        return iUserRepository.findByUserName(userName);
     }
 
     @Override
     public User findByEmail(String email) {
-        // TODO Auto-generated method stub
-        return null;
+        return iUserRepository.findByEmail(email);
     }
 
     @Override
     public User createUser(User user) {
-        // TODO Auto-generated method stub
         User localUser = this.findByUserName(user.getUserName());
         if (localUser == null) {
-            ShoppingCart shoppingCart = new ShoppingCart();
-            shoppingCart.setUser(user);
-            user.setShoppingCart(shoppingCart);
+            Cart cart = new Cart();
+            cart.setUser(user);
+            user.setCart(cart);
 
             localUser = this.save(user);
             
@@ -84,12 +80,6 @@ public class UserService implements IUserService{
         return localUser;
     }
 
-    @Override
-    public User findById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
-   
 
 }

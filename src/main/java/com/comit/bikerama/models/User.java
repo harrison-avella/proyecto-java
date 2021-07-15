@@ -47,7 +47,7 @@ public class User implements Serializable {
    private Set<Role> roles = new HashSet<Role>();
    
    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-   private ShoppingCart shoppingCart;
+   private Cart cart;
    //private Set<ShoppingCart> shopping = new HashSet<>();
 
    /*
