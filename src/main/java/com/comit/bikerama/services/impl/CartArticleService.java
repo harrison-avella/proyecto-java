@@ -7,6 +7,7 @@ import com.comit.bikerama.models.Cart;
 import com.comit.bikerama.models.CartArticle;
 import com.comit.bikerama.models.Order;
 import com.comit.bikerama.models.Product;
+import com.comit.bikerama.models.ProductToCartArticle;
 import com.comit.bikerama.models.User;
 import com.comit.bikerama.repositories.ICartArticleRepository;
 import com.comit.bikerama.repositories.IProductToCartArticleRepository;
@@ -59,28 +60,40 @@ public class CartArticleService implements ICartArticleService {
             cartArticle.setQuantity(cartArticle.getQuantity() + quantity);
             cartArticle.setTotalPrice(new BigDecimal(product.getPrice()).multiply(new BigDecimal(quantity)));
             iCartArticleRepository.save(cartArticle);
+            return cartArticle;
         }
-        // TODO complete method tomorrow
-        return null;
+    }  
+        CartArticle cartArticle = new CartArticle();
+        cartArticle.setCart(user.getCart());
+        cartArticle.setProduct(product);
+
+        cartArticle.setQuantity(quantity);
+        cartArticle.setTotalPrice(new BigDecimal(product.getPrice()).multiply(new BigDecimal(quantity)));
+        cartArticle = iProductToCartArticleRepository.save(cartArticle);
+
+        ProductToCartArticle productToCartArticle = new ProductToCartArticle();
+        productToCartArticle.setProduct(product);
+        productToCartArticle.setCartArticle(cartArticle);
+        iProductToCartArticleRepository.save(productToCartArticle);
+        return cartArticle;
     }
 
     @Override
     public void deleteCartArticle(CartArticle cartArticle) {
-        // TODO Auto-generated method stub
-
+        iCartArticleRepository.delete(cartArticle);
+        iProductToCartArticleRepository.delete(cartArticle);
+        
     }
 
 
     @Override
     public CartArticle save(CartArticle cartArticle) {
-        // TODO Auto-generated method stub
-        return null;
+        return iCartArticleRepository.save(cartArticle);
     }
 
     @Override
     public List<CartArticle> findByOrder(Order order) {
-        // TODO Auto-generated method stub
-        return null;
+        return iCartArticleRepository.findByOrder(order);
     }
 
 }

@@ -11,5 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface IProductToCartArticleRepository extends JpaRepository<ProductToCartArticle, Long> {
     void deleteByCartArticle(CartArticle cartArticleId);
 
+    void delete(CartArticle cartArticle);
+
     
 }

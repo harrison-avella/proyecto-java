@@ -17,7 +17,7 @@ public interface ICartArticleService {
 
     void deleteCartArticle(CartArticle cartArticle);
 
-    CartArticle addProductToCartArticle(Product product, User user, Long productId);
+    CartArticle addProductToCartArticle(Product product, User user, int quantity);
 
     CartArticle save(CartArticle cartArticle);
 
