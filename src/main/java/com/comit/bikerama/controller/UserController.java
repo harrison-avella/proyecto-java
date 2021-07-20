@@ -22,7 +22,7 @@ public class UserController{
         this.userService = userService;
     }
 
-    @RequestMapping("/products")
+    @RequestMapping("/users")
     public String list(Model model){
         model.addAttribute("persons", userService.findAll());
         return "listado";

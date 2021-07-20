@@ -27,18 +27,18 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<Product> getAll(){
-        return productService.getAll();
+        return productService.findAll();
     }
 
     @GetMapping("/products/{id}")
     public Product getById(@PathVariable(name = "id") Long id){
-        return productService.getById(id);
+        return productService.findById(id);
     }
 
     @PutMapping("/products/{id}")
     public Product update(@PathVariable(name = "id") Long id, @RequestBody Product product){
 
-        Product productSelect = productService.getById(id);
+        Product productSelect = productService.findById(id);
         productSelect.setName(product.getName());
         productSelect.setDescription(product.getDescription());
         productSelect.setPrice(product.getPrice());

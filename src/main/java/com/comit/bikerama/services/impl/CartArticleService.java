@@ -1,6 +1,8 @@
 package com.comit.bikerama.services.impl;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.List;
 
 import com.comit.bikerama.models.Cart;
@@ -18,10 +20,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CartArticleService implements ICartArticleService {
-    
+
     @Autowired
     private ICartArticleRepository iCartArticleRepository;
-    
+
     @Autowired
     private IProductToCartArticleRepository iProductToCartArticleRepository;
 
@@ -37,12 +39,10 @@ public class CartArticleService implements ICartArticleService {
 
     @Override
     public CartArticle updateCartArticle(CartArticle cartArticle) {
-        //TODO: repair other method
-        BigDecimal totalPrice = new BigDecimal(cartArticle.getProduct().getPrice()).multiply(new BigDecimal(cartArticle.getQuantity()));
-    
-        // TODO: remplace method by repository
-        //totalPrice = totalPrice.setScale(2, BigDecimal.ROUND_HALF_UP);
-        
+        BigDecimal totalPrice = cartArticle.getProduct().getPrice().multiply(new BigDecimal(cartArticle.getQuantity()));
+        // totalPrice = totalPrice.setScale(2, BigDecimal.ROUND_HALF_UP);
+        totalPrice = totalPrice.round(new MathContext(2, RoundingMode.HALF_UP));
+
         cartArticle.setTotalPrice(totalPrice);
 
         iCartArticleRepository.save(cartArticle);
@@ -50,26 +50,25 @@ public class CartArticleService implements ICartArticleService {
         return cartArticle;
     }
 
-
     @Override
     public CartArticle addProductToCartArticle(Product product, User user, int quantity) {
         // TODO Auto-generated method stub
         List<CartArticle> cartArticleList = findByCart(user.getCart());
-    for(CartArticle cartArticle: cartArticleList){
-        if(cartArticle.getProduct().getId().equals(product.getId())){
-            cartArticle.setQuantity(cartArticle.getQuantity() + quantity);
-            cartArticle.setTotalPrice(new BigDecimal(product.getPrice()).multiply(new BigDecimal(quantity)));
-            iCartArticleRepository.save(cartArticle);
-            return cartArticle;
+        for (CartArticle cartArticle : cartArticleList) {
+            if (cartArticle.getProduct().getId().equals(product.getId())) {
+                cartArticle.setQuantity(cartArticle.getQuantity() + quantity);
+                cartArticle.setTotalPrice(product.getPrice().multiply(new BigDecimal(quantity)));
+                iCartArticleRepository.save(cartArticle);
+                return cartArticle;
+            }
         }
-    }  
         CartArticle cartArticle = new CartArticle();
         cartArticle.setCart(user.getCart());
         cartArticle.setProduct(product);
 
         cartArticle.setQuantity(quantity);
-        cartArticle.setTotalPrice(new BigDecimal(product.getPrice()).multiply(new BigDecimal(quantity)));
-        cartArticle = iProductToCartArticleRepository.save(cartArticle);
+        cartArticle.setTotalPrice(product.getPrice().multiply(new BigDecimal(quantity)));
+        cartArticle = iCartArticleRepository.save(cartArticle);
 
         ProductToCartArticle productToCartArticle = new ProductToCartArticle();
         productToCartArticle.setProduct(product);
@@ -78,13 +77,14 @@ public class CartArticleService implements ICartArticleService {
         return cartArticle;
     }
 
+
+
     @Override
     public void deleteCartArticle(CartArticle cartArticle) {
         iCartArticleRepository.delete(cartArticle);
         iProductToCartArticleRepository.delete(cartArticle);
-        
-    }
 
+    }
 
     @Override
     public CartArticle save(CartArticle cartArticle) {
