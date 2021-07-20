@@ -7,6 +7,7 @@ import com.comit.bikerama.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,7 +23,15 @@ public class ProductService implements IProductService{
 
     @Override
     public List<Product> findAll() {
-        return iProductRepository.findAll();
+        List<Product> productsList = iProductRepository.findAll();
+        List<Product> activeProductList = new ArrayList<>();
+        
+        for(Product product : productsList){
+            if(product.isActive()){
+                activeProductList.add(product);
+            }
+        }
+        return activeProductList;
     }
 
     @Override

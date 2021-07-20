@@ -25,6 +25,9 @@ public class Product implements Serializable {
     private BigDecimal price = BigDecimal.ZERO;
     private String supplier = "";
     private String image = "";
+    private boolean active = true;
+    private int stock = 0;
+ 
 }
 
 // private BigDecimal cantMin = BigDecimal.TEN;
