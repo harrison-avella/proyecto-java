@@ -5,6 +5,8 @@ import java.util.List;
 import com.comit.bikerama.domain.Product;
 import com.comit.bikerama.service.impl.ProductService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,14 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class ProductController {
-    //private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
-
-    private final ProductService productService;
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
-    public ProductController(ProductService productService){
-        this.productService = productService;
-    }
+    private  ProductService productService;
 
     @GetMapping("/products")
     public List<Product> getAll(){

@@ -15,7 +15,7 @@ public interface IProductService {
     Product update(Product product);
 
     // TODO: Revicar esta implementação
-    void delete(Product product);
+    String delete(Long id);
 
     List<Product> findByName(String name);
 

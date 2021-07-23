@@ -11,6 +11,8 @@ import com.comit.bikerama.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import net.minidev.json.JSONObject;
+
 @Service
 public class ProductService implements IProductService{
 
@@ -52,9 +54,15 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public void delete(Product product) {
-        productRepository.delete(product);
-    //TODO: Revisar este metodo
+    public String delete(Long id) {
+        JSONObject jsonObject = new JSONObject();
+		try {
+			productRepository.deleteById(id);
+			jsonObject.put("message", "Book deleted successfully");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jsonObject.toString();
     }
 
     @Override
