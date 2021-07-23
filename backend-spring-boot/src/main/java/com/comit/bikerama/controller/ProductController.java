@@ -8,6 +8,7 @@ import com.comit.bikerama.service.impl.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,28 +22,30 @@ public class ProductController {
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
-    private  ProductService productService;
+    private ProductService productService;
 
     @GetMapping("/products")
-    public List<Product> getAll(){
-        return productService.findAll();
+    public ResponseEntity<List<Product>> findAll(){
+        List<Product> producList = productService.findAll();
+        return ResponseEntity.ok(producList);
     }
 
     @GetMapping("/products/{id}")
-    public Product getById(@PathVariable(name = "id") Long id){
-        return productService.findById(id).get();
+    public ResponseEntity<Product> findById(@PathVariable(name = "id") Long id){
+        Product product = productService.findById(id).get();
+        return ResponseEntity.ok(product);
     }
 
     @PutMapping("/products/{id}")
-    public Product update(@PathVariable(name = "id") Long id, @RequestBody Product product){
+    public ResponseEntity<Product> update(@PathVariable(name = "id") Long id, @RequestBody Product product){
 
         Product productSelect = productService.findById(id).get();
         productSelect.setName(product.getName());
         productSelect.setDescription(product.getDescription());
         productSelect.setPrice(product.getPrice());
         productSelect.setSupplier(product.getSupplier());
-
-        return productService.update(productSelect);
+        Product productUpdate = productService.update(productSelect);
+        return ResponseEntity.ok(productUpdate);
     }
 
     /*
