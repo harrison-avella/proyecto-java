@@ -32,13 +32,13 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public Product getById(@PathVariable(name = "id") Long id){
-        return productService.findById(id);
+        return productService.findById(id).get();
     }
 
     @PutMapping("/products/{id}")
     public Product update(@PathVariable(name = "id") Long id, @RequestBody Product product){
 
-        Product productSelect = productService.findById(id);
+        Product productSelect = productService.findById(id).get();
         productSelect.setName(product.getName());
         productSelect.setDescription(product.getDescription());
         productSelect.setPrice(product.getPrice());

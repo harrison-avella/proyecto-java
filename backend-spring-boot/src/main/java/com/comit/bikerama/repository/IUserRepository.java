@@ -15,5 +15,6 @@ cuida de que se ejuten un conjunto de instrucciones por separado, inconveniente 
 @Transactional
 public interface IUserRepository extends JpaRepository<User,Long> {
     User findByUserName(String username);
+   
     User findByEmail(String email);
 }

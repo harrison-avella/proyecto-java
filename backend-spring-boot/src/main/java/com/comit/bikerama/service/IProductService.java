@@ -1,23 +1,24 @@
 package com.comit.bikerama.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.comit.bikerama.domain.Product;
 
 public interface IProductService {
     List<Product> findAll();
 
-    Product findById(Long id);
-
-    List<Product> findByName(String name);
-
-    List<Product> findByCategory(String category);
-
+    Optional<Product> findById(Long id);
+    
     Product save(Product product);
 
     Product update(Product product);
 
-    //TODO: Revicar esta implementação
+    // TODO: Revicar esta implementação
     void delete(Product product);
+
+    List<Product> findByName(String name);
+
+    List<Product> findByCategory(String category);
 
 }
