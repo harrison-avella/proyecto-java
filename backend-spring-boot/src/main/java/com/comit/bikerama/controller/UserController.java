@@ -1,7 +1,7 @@
 package com.comit.bikerama.controller;
 
 
-import com.comit.bikerama.services.impl.UserService;
+import com.comit.bikerama.service.impl.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
