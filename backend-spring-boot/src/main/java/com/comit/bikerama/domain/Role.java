@@ -26,14 +26,15 @@ public class Role implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @OneToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<User> users;
 
     /*
     @ManyToOne
     @JoinColumn(name= "user_id")
     private User user;
     */
-    @OneToMany(targetEntity = User.class, mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<User> users;
+    
 
 
 

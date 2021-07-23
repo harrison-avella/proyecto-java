@@ -32,8 +32,8 @@ public class Article implements Serializable {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "shoping_cart_id")
-    private Cart shoppingCart;
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
     @ManyToOne
     @JoinColumn(name = "order_id")

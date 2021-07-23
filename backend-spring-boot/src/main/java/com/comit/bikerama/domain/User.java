@@ -50,7 +50,7 @@ public class User implements Serializable {
   @JoinColumn(name = "role_id")
   private Role role;
 
-   @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+   @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
    private Cart cart;
    //private Set<ShoppingCart> shopping = new HashSet<>();
 

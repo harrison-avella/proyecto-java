@@ -20,6 +20,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+
 public class CartArticle {
     
     @Id
@@ -36,7 +37,7 @@ public class CartArticle {
     private List<ProductToCartArticle> productToCartArticleList;
 
     @ManyToOne
-    @JoinColumn(name = "shopping_cart_id")
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     @ManyToOne
