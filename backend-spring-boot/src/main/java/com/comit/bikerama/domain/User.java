@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,43 +38,34 @@ public class User implements Serializable {
    private String email = "";
    private String address = "";
    private String phone = "";
-   //private boolean active = Boolean.TRUE;
-   //TODO: Revisar la relacion ManyToOne y ManyToMany 
+   // private boolean active = Boolean.TRUE;
+   // TODO: Revisar la relacion ManyToOne y ManyToMany
    
-   /*
-   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-   @JsonIgnore
-   private Set<Role> roles = new HashSet<Role>();
-   */
-
-  @ManyToOne
-  @JoinColumn(name = "role_id")
-  private Role role;
-
-   @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+   @ManyToOne (fetch = FetchType.LAZY)
+   @JoinColumn(name = "role_id")
+   private Role role;
+   
+   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
    private Cart cart;
-   //private Set<ShoppingCart> shopping = new HashSet<>();
+   
+      /*
+       * @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade =
+       * CascadeType.MERGE)
+       * 
+       * @JsonIgnore private Set<Role> roles = new HashSet<Role>();
+       */
+
+   // private Set<ShoppingCart> shopping = new HashSet<>();
 
    /*
-   public void activate() {
-      this.active = Boolean.TRUE;
-   }
-
-   public void deactivate() {
-      this.active = Boolean.FALSE;
-   }
-
-   public boolean haveRole(Role thisRole) {
-      boolean haveRole = false;
-      for (Role role : roles) {
-         if (role.getType().equals(thisRole)) {
-            haveRole = true;
-            break;
-         }
-      }
-      return haveRole;
-   }
-*/
+    * public void activate() { this.active = Boolean.TRUE; }
+    * 
+    * public void deactivate() { this.active = Boolean.FALSE; }
+    * 
+    * public boolean haveRole(Role thisRole) { boolean haveRole = false; for (Role
+    * role : roles) { if (role.getType().equals(thisRole)) { haveRole = true;
+    * break; } } return haveRole; }
+    */
    // @ManyToOne Ejemplo: muchas cordenadas pueden pertenecer a una embarcacion
 
    // @OneToMany Ejemplo: una flota tiene muchas embascaciones List<any>

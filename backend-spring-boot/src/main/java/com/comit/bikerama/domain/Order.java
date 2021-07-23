@@ -35,7 +35,7 @@ public class Order implements Serializable{
     private String payment; 
     private BigDecimal totalPayable;
 
-    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<CartArticle> cartArticleList;
 
     @ManyToOne
