@@ -17,7 +17,7 @@ public interface IUserService{
     
     String delete(Long id);
     
-    User findByUserName(String userName);
+    //User findByUserName(String userName);
 
     User findByEmail(String email);
 

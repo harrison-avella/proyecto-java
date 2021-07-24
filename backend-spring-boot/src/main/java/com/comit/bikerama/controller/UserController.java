@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,20 +22,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
+    /*
     @Autowired
     private AuthenticationManager authenticationManager;
-
+*/
     @Autowired
     private UserService userService;
-
+/*
     @Autowired
     private RoleService roleService;
-
+*/
     @PostMapping(value = "/signUp"/* , produces = MediaType.APPLICATION_JSON_VALUE */)
     public ResponseEntity<?> signUp(@RequestBody User user) {
         try {
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            user.setRole(roleService.findByName(StatusRole.USER.toString()));
+            //user.setRole(roleService.findByName(StatusRole.USER.toString()));
             User savedUser = userService.save(user);
             return ResponseEntity.ok(savedUser);
         } catch (Exception e) {

@@ -58,11 +58,12 @@ public class UserService implements IUserService {
         }
         return jsonObject.toString();
     }
-
+/*
     @Override
     public User findByUserName(String userName) {
         return userRepository.findByUserName(userName);
     }
+    */
 
     @Override
     public User findByEmail(String email) {

@@ -78,7 +78,7 @@ public class CartArticleService implements ICartArticleService {
     }
 
 
-
+/*
     @Override
     public void deleteCartArticle(CartArticle cartArticle) {
         iCartArticleRepository.delete(cartArticle);
@@ -86,6 +86,7 @@ public class CartArticleService implements ICartArticleService {
 
     }
 
+    */
     @Override
     public CartArticle save(CartArticle cartArticle) {
         return iCartArticleRepository.save(cartArticle);

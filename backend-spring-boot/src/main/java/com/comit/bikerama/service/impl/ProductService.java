@@ -64,12 +64,12 @@ public class ProductService implements IProductService{
     public List<Product> findByName(String name) {
         return productRepository.findByName(name);
     }
-
+/*
     @Override
     public List<Product> findByCategory(String category) {
         return productRepository.findByCategory(category);
     }
-
+*/
     /*public Product save(Product product){
         return productRepository.saveAllAndFlush(product);
     }*/
