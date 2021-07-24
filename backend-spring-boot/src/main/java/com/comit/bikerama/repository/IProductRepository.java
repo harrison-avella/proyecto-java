@@ -13,8 +13,9 @@ import org.springframework.stereotype.Repository;
 @Transactional
 public interface IProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findByCategory(String category);
+    
+    //List<Product> findByCategory(String category);
 
-    List<Product> findByName(String Name);
+    List<Product> findByName(String name);
 
 }

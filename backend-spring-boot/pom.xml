@@ -18,7 +18,6 @@
 		<java.version>1.8</java.version>
 		<repackage.classifier/>
 		<spring-native.version>0.10.1</spring-native.version>
-
 	</properties>
 
 	<dependencies>
