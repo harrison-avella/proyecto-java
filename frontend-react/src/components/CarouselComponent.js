@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import image from "../assets/images/dirty-bike.jpg";
 
-class CarouselComponent extends React.Component {
+export default class CarouselComponent extends Component {
   render() {
     return (
       <>
@@ -48,4 +48,3 @@ class CarouselComponent extends React.Component {
   }
 }
 
-export default CarouselComponent;

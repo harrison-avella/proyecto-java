@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { Nav, Navbar, NavDropdown, Container } from "react-bootstrap";
 import logo from "../assets/images/logo.ico";
 import { Link } from "react-router-dom";
 
-class NavigationBar extends React.Component {
+export default class NavigationBar extends Component {
   render() {
     return (
       <>
@@ -46,4 +46,3 @@ class NavigationBar extends React.Component {
   }
 }
 
-export default NavigationBar;
