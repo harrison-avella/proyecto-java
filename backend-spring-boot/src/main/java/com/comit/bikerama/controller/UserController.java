@@ -32,7 +32,7 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 */
-    @PostMapping(value = "/signUp"/* , produces = MediaType.APPLICATION_JSON_VALUE */)
+    @PostMapping(value = "/signUp")
     public ResponseEntity<?> signUp(@RequestBody User user) {
         try {
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));

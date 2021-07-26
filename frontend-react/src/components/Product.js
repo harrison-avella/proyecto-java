@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Card, Form, Button, Row, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSave } from "@fortawesome/free-solid-svg-icons";
 export default class Product extends Component {
   constructor(props) {
     super(props);
@@ -90,7 +92,7 @@ export default class Product extends Component {
             </Card.Body>
             <Card.Footer>
               <Button variant="success" type="submit">
-                Guardar
+                <FontAwesomeIcon icon={faSave} /> Guardar
               </Button>
             </Card.Footer>
           </Form>

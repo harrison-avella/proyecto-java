@@ -23,10 +23,10 @@ public class Product implements Serializable {
     private String name = "";
     private String description = "";
     private BigDecimal price = BigDecimal.ZERO;
+    private Integer stock = 0;
     private String supplier = "";
     private String image = "";
     private boolean active = true;
-    private Integer stock = 0;
  
 }
 

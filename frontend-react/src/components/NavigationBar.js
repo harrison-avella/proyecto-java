@@ -17,7 +17,7 @@ export default class NavigationBar extends Component {
               <Nav className="me-auto">
                 <Link className="nav-link" to={""}>Usuarios</Link>
                 <Link className="nav-link" to={"addProduct"}>Producto</Link>
-                <Link className="nav-link" to={"productlist"}>Productos</Link>
+                <Link className="nav-link" to={"productList"}>Productos</Link>
                 <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
