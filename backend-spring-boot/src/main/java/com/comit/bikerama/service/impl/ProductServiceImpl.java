@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.comit.bikerama.domain.Product;
-import com.comit.bikerama.repository.IProductRepository;
-import com.comit.bikerama.service.IProductService;
+import com.comit.bikerama.repository.ProductRepository;
+import com.comit.bikerama.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 import net.minidev.json.JSONObject;
 
 @Service
-public class ProductService implements IProductService{
+public class ProductServiceImpl implements ProductService{
 
     @Autowired
-    private IProductRepository productRepository;
+    private ProductRepository productRepository;
 
     @Override
     public List<Product> findAll() {

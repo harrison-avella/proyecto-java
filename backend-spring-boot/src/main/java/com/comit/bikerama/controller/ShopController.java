@@ -1,6 +1,6 @@
 package com.comit.bikerama.controller;
 
-import com.comit.bikerama.service.IUserService;
+import com.comit.bikerama.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShopController {
     
     @Autowired
-    private IUserService userService;
+    private UserService userService;
     
 
 }

@@ -11,21 +11,21 @@ import com.comit.bikerama.domain.Order;
 import com.comit.bikerama.domain.Product;
 import com.comit.bikerama.domain.ProductToCartArticle;
 import com.comit.bikerama.domain.User;
-import com.comit.bikerama.repository.ICartArticleRepository;
-import com.comit.bikerama.repository.IProductToCartArticleRepository;
-import com.comit.bikerama.service.ICartArticleService;
+import com.comit.bikerama.repository.CartArticleRepository;
+import com.comit.bikerama.repository.ProductToCartArticleRepository;
+import com.comit.bikerama.service.CartArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CartArticleService implements ICartArticleService {
+public class CartArticleServiceImpl implements CartArticleService {
 
     @Autowired
-    private ICartArticleRepository iCartArticleRepository;
+    private CartArticleRepository iCartArticleRepository;
 
     @Autowired
-    private IProductToCartArticleRepository iProductToCartArticleRepository;
+    private ProductToCartArticleRepository iProductToCartArticleRepository;
 
     @Override
     public List<CartArticle> findByCart(Cart cart) {

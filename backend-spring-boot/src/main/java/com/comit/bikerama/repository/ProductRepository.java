@@ -2,16 +2,15 @@ package com.comit.bikerama.repository;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import com.comit.bikerama.domain.Product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional
-public interface IProductRepository extends JpaRepository<Product, Long> {
+@Transactional(readOnly = true)
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
     
     //List<Product> findByCategory(String category);

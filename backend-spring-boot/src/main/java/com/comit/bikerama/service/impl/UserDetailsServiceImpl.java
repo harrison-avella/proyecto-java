@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.comit.bikerama.domain.User;
-import com.comit.bikerama.repository.IUserRepository;
+import com.comit.bikerama.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private IUserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

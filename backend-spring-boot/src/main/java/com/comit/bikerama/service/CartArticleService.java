@@ -8,7 +8,7 @@ import com.comit.bikerama.domain.Order;
 import com.comit.bikerama.domain.Product;
 import com.comit.bikerama.domain.User;
 
-public interface ICartArticleService {
+public interface CartArticleService {
     List<CartArticle> findByCart(Cart cart);
 
     CartArticle findById(Long id);

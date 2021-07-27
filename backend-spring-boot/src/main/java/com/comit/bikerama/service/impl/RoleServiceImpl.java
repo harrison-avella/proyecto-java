@@ -4,17 +4,17 @@ import java.util.List;
 import java.util.Optional;
 
 import com.comit.bikerama.domain.Role;
-import com.comit.bikerama.repository.IRoleRepository;
-import com.comit.bikerama.service.IRoleService;
+import com.comit.bikerama.repository.RoleRepository;
+import com.comit.bikerama.service.RoleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.minidev.json.JSONObject;
 
-public class RoleService implements IRoleService{
+public class RoleServiceImpl implements RoleService{
 
     @Autowired
-    private IRoleRepository roleRepository; 
+    private RoleRepository roleRepository; 
     
     @Override
 	public List<Role> findAll() {

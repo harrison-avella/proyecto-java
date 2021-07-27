@@ -1,14 +1,13 @@
 package com.comit.bikerama.repository;
 
-import javax.transaction.Transactional;
-
 import com.comit.bikerama.domain.Article;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional
-public interface IArticleRepository extends JpaRepository<Article, Long> {
+@Transactional(readOnly = true)
+public interface ArticleRepository extends JpaRepository<Article, Long> {
     
 }

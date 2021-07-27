@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.comit.bikerama.domain.Role;
 
-public interface IRoleService {
+public interface RoleService {
 
     Role findByName(String name);
 

@@ -1,14 +1,15 @@
 package com.comit.bikerama.repository;
 
-import javax.transaction.Transactional;
+
 
 import com.comit.bikerama.domain.Order;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional
-public interface IOrderRepository extends JpaRepository<Order, Long> {
+@Transactional(readOnly = true)
+public interface OrderRepository extends JpaRepository<Order, Long> {
     
 }

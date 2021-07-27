@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.comit.bikerama.domain.Product;
 
-public interface IProductService {
+public interface ProductService {
     List<Product> findAll();
 
     Optional<Product> findById(Long id);

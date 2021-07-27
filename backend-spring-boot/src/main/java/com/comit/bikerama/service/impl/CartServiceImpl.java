@@ -5,19 +5,19 @@ import java.util.List;
 
 import com.comit.bikerama.domain.Cart;
 import com.comit.bikerama.domain.CartArticle;
-import com.comit.bikerama.repository.ICartRepository;
-import com.comit.bikerama.service.ICartArticleService;
-import com.comit.bikerama.service.ICartService;
+import com.comit.bikerama.repository.CartRepository;
+import com.comit.bikerama.service.CartArticleService;
+import com.comit.bikerama.service.CartService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class CartService implements ICartService {
+public class CartServiceImpl implements CartService {
     
     @Autowired
-    private ICartArticleService iCartArticleService;
+    private CartArticleService iCartArticleService;
 
     @Autowired
-    private ICartRepository iCartRepository;
+    private CartRepository iCartRepository;
 
     @Override
     public Cart updateCart(Cart cart) {

@@ -2,7 +2,7 @@ package com.comit.bikerama.service;
 
 import com.comit.bikerama.domain.Cart;
 
-public interface ICartService {
+public interface CartService {
     Cart updateCart(Cart cart);
 
 }

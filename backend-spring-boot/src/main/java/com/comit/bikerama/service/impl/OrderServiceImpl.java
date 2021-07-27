@@ -8,19 +8,19 @@ import com.comit.bikerama.domain.CartArticle;
 import com.comit.bikerama.domain.Order;
 import com.comit.bikerama.domain.Product;
 import com.comit.bikerama.domain.User;
-import com.comit.bikerama.repository.IOrderRepository;
-import com.comit.bikerama.service.ICartArticleService;
-import com.comit.bikerama.service.IOrderService;
+import com.comit.bikerama.repository.OrderRepository;
+import com.comit.bikerama.service.CartArticleService;
+import com.comit.bikerama.service.OrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class OrderService implements IOrderService {
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    private IOrderRepository iOrderRepository;
+    private OrderRepository iOrderRepository;
 
     @Autowired
-    private ICartArticleService iCartArticleService;
+    private CartArticleService iCartArticleService;
 
     public Order createOrder(Cart cart, User user) {
         Order order = new Order();

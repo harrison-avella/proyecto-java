@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional
-public interface ICartArticleRepository extends JpaRepository<CartArticle, Long> {
+@Transactional(readOnly = true)
+public interface CartArticleRepository extends JpaRepository<CartArticle, Long> {
     List<CartArticle> findByCart(Cart cart);
 
     List<CartArticle> findByOrder(Order order);

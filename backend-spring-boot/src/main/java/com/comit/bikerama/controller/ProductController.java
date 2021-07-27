@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.comit.bikerama.domain.Product;
-import com.comit.bikerama.service.impl.ProductService;
+import com.comit.bikerama.service.impl.ProductServiceImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +27,7 @@ public class ProductController {
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
     @GetMapping("/products")
     public ResponseEntity<?> findAll() {

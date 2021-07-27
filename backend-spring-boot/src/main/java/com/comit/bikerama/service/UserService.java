@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import com.comit.bikerama.domain.User;
 
-public interface IUserService{
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+public interface UserService{
 
     List<User> findAll();
     
