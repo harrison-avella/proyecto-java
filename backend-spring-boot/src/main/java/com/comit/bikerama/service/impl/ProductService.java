@@ -22,14 +22,7 @@ public class ProductService implements IProductService{
     @Override
     public List<Product> findAll() {
         List<Product> productsList = productRepository.findAll();
-        List<Product> activeProductList = new ArrayList<>();
-        
-        for(Product product : productsList){
-            if(product.isActive()){
-                activeProductList.add(product);
-            }
-        }
-        return activeProductList;
+        return productsList;
     }
 
     @Override

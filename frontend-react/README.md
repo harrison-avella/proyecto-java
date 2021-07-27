@@ -20,3 +20,8 @@ npm i --save @fortawesome/fontawesome-svg-core
 
   npm install axios
 
+--------
+
+
+Cuando agregue una imagen
+queda pendiente agregar el componente <Image src ={product.image} roundedCircle width="25" heigth="25">

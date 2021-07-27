@@ -2,39 +2,122 @@ import React, { Component } from "react";
 import { Card, Form, Button, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import MyToast from "./MyToast";
 export default class Product extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = this.initialState();
+    this.productChange = this.productChange.bind(this);
+    this.submitProduct = this.submitProduct.bind(this);
+  }
+
+  initialState() {
+    return {
+      id: "",
       name: "",
       description: "",
       price: "",
       stock: "",
       supplier: "",
     };
-    this.productChange = this.productChange.bind(this);
-    this.submitProduct = this.submitProduct.bind(this);
   }
 
-  submitProduct(e) {
+  componentDidMount() {
+    const id  = this.props.match.params.id;
+    if (id) {
+      this.getProductById(id);
+    }
+  }
+
+  getProductById(id) {
+    axios
+      .get(`http://localhost:8080/api/products/${id}`)
+      .then(response => {
+        this.setState({
+          id: response.data.id,
+          name: response.data.name,
+          description: response.data.description,
+          price: response.data.price,
+          stock: response.data.stock,
+          supplier: response.data.supplier,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  updateProduct = (e) => {
+    e.preventDefault();
+    const { name, description, price, stock, supplier } = this.state;
+    axios
+      .put(`http://localhost:8080/api/products/${this.state.id}`, {
+        name,
+        description,
+        price,
+        stock,
+        supplier,
+      })
+      .then(response => {
+        this.setState({
+          id: response.data.id,
+          name: response.data.name,
+          description: response.data.description,
+          price: response.data.price,
+          stock: response.data.stock,
+          supplier: response.data.supplier,
+        });
+        this.props.history.push("/");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      this.setState(this.initialState());
+  }
+
+
+
+  submitProduct = (e) => {
     alert(
-      `Se agrego el producto con: \n\nNombre: ${this.state.name} \nDescripcion: ${this.state.description} \nPrecio: ${this.state.price} \nCantidad: ${this.state.stock} \nProvedor: ${this.state.supplier}`
+      `El producto con los siguientes datos sera enviado: \n\nNombre: ${this.state.name} \nDescripcion: ${this.state.description} \nPrecio: ${this.state.price} \nCantidad: ${this.state.stock} \nProvedor: ${this.state.supplier}`
     );
     e.preventDefault();
-  }
 
-  productChange(e) {
+    const product = {
+      name: this.state.name,
+      description: this.state.description,
+      price: this.state.price,
+      stock: this.state.stock,
+      supplier: this.state.supplier,
+    };
+
+    axios.post("http://localhost:8080/api/products", product).then((res) => {
+      console.log(res);
+      if (res.data != null){
+        this.setState(this.initialState());
+        alert("Producto agregado");
+      }
+    });
+  };
+
+  productChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
   render() {
+    const { name, description, price, stock, supplier } = this.state;
+
     return (
       <>
+        {/*<div>
+          <MyToast />
+        </div>*/}
         <Card className={"border, border-dark bg-dark text-white"}>
-          <Card.Header>Agregar producto</Card.Header>
-          <Form onSubmit={this.submitProduct} id="productFromId">
+          <Card.Header>{this.state.id ? "Editar": "Agregar"} producto</Card.Header>
+          <Form onSubmit={this.state.id ? this.updateProduct : this.submitProduct} id="productFromId">
             <Card.Body>
               <Row>
                 <Form.Group as={Col} className="mb-3" controlId="formGridName">
@@ -42,7 +125,7 @@ export default class Product extends Component {
                   <Form.Control
                     name="name"
                     type="text"
-                    value={this.state.name}
+                    value={name}
                     onChange={this.productChange}
                   />
                 </Form.Group>
@@ -55,7 +138,7 @@ export default class Product extends Component {
                   <Form.Control
                     name="supplier"
                     type="text"
-                    value={this.state.supplier}
+                    value={supplier}
                     onChange={this.productChange}
                   />
                 </Form.Group>
@@ -66,7 +149,7 @@ export default class Product extends Component {
                   <Form.Control
                     name="price"
                     type="text"
-                    value={this.state.price}
+                    value={price}
                     onChange={this.productChange}
                   />
                 </Form.Group>
@@ -75,7 +158,7 @@ export default class Product extends Component {
                   <Form.Control
                     name="stock"
                     type="text"
-                    value={this.state.stock}
+                    value={stock}
                     onChange={this.productChange}
                   />
                 </Form.Group>
@@ -85,14 +168,14 @@ export default class Product extends Component {
                 <Form.Control
                   name="description"
                   type="text"
-                  value={this.state.description}
+                  value={description}
                   onChange={this.productChange}
                 />
               </Form.Group>
             </Card.Body>
             <Card.Footer>
               <Button variant="success" type="submit">
-                <FontAwesomeIcon icon={faSave} /> Guardar
+                <FontAwesomeIcon icon={faSave} /> {this.state.id ? "Editar": "Guardar"} 
               </Button>
             </Card.Footer>
           </Form>

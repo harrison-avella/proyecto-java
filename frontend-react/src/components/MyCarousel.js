@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import image from "../assets/images/dirty-bike.jpg";
 
-export default class CarouselComponent extends Component {
+export default class MyCarousel extends Component {
   render() {
     return (
       <>
