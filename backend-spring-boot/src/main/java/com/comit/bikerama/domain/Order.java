@@ -21,10 +21,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "orders")
-public class Order implements Serializable{
+public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -32,7 +32,7 @@ public class Order implements Serializable{
     private Date shippingDate;
     private String status;
     private String shippingAddress;
-    private String payment; 
+    private String payment;
     private BigDecimal totalPayable;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)

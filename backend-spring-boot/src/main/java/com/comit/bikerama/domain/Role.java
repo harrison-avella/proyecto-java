@@ -27,15 +27,12 @@ public class Role implements Serializable {
     private Long id;
     private String name;
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<User> users;
+    private Set<User> users;
 
     /*
-    @ManyToOne
-    @JoinColumn(name= "user_id")
-    private User user;
-    */
-    
-
-
+     * @ManyToOne
+     * 
+     * @JoinColumn(name= "user_id") private User user;
+     */
 
 }

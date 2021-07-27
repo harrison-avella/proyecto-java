@@ -23,20 +23,19 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     /*
-    @Autowired
-    private AuthenticationManager authenticationManager;
-*/
+     * @Autowired private AuthenticationManager authenticationManager;
+     */
     @Autowired
     private UserServiceImpl userService;
-/*
-    @Autowired
-    private RoleService roleService;
-*/
+
+    /*
+     * @Autowired private RoleService roleService;
+     */
     @PostMapping(value = "/signUp")
     public ResponseEntity<?> signUp(@RequestBody User user) {
         try {
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            //user.setRole(roleService.findByName(StatusRole.USER.toString()));
+            // user.setRole(roleService.findByName(StatusRole.USER.toString()));
             User savedUser = userService.save(user);
             return ResponseEntity.ok(savedUser);
         } catch (Exception e) {
@@ -46,8 +45,6 @@ public class UserController {
         }
 
     }
-
-    
 
     /*
      * @Autowired public UserController(UserService userService){ this.userService =

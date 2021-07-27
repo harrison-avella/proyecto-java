@@ -15,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,8 +26,8 @@ public class Article implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private BigDecimal cant = BigDecimal.ZERO;
-    private  BigDecimal priceUnit = BigDecimal.ONE;
-    
+    private BigDecimal priceUnit = BigDecimal.ONE;
+
     @OneToOne
     private Product product;
 
@@ -40,7 +39,5 @@ public class Article implements Serializable {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    public BigDecimal getTotalPrice(){
-        return priceUnit.multiply(cant);
-    }
+    public BigDecimal getTotalPrice() { return priceUnit.multiply(cant); }
 }

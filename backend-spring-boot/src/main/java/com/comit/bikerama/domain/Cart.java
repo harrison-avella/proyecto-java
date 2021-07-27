@@ -24,31 +24,31 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+
 public class Cart implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private BigDecimal totalPayable;
 
-    @OneToOne /*(mappedBy = "cart")*/
+    @OneToOne /* (mappedBy = "cart") */
     private User user;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<CartArticle> cartArticleList = new ArrayList<>();
 
-    
-    //private Date dateAdded;//fecha compra
-    //private Date dateShipping; //fecha de envio
-    //@Enumerated(EnumType.STRING)    
-    //private StatusShippingCart statusShippingCart = StatusShippingCart.ACTIVO;
-    
-   
-    //articulo vendible y producto es lo que esta en stock
-    public BigDecimal getTotalPayable(){
-        return cartArticleList.stream().map(a -> a.getTotalPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);
+    // private Date dateAdded;//fecha compra
+    // private Date dateShipping; //fecha de envio
+    // @Enumerated(EnumType.STRING)
+    // private StatusShippingCart statusShippingCart = StatusShippingCart.ACTIVO;
+
+    // articulo vendible y producto es lo que esta en stock
+    public BigDecimal getTotalPayable() {
+        return cartArticleList.stream().map(a -> a.getTotalPrice()).reduce(BigDecimal.ZERO,
+                BigDecimal::add);
     }
 
 }

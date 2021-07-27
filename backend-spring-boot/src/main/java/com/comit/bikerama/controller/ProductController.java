@@ -1,11 +1,9 @@
 package com.comit.bikerama.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.comit.bikerama.domain.Product;
 import com.comit.bikerama.service.impl.ProductServiceImpl;
-
+import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class ProductController {
+
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
@@ -38,7 +37,8 @@ public class ProductController {
     @GetMapping("/products/{id}")
     public ResponseEntity<?> findById(@PathVariable(name = "id") Long id) {
         Optional<Product> product = productService.findById(id);
-        return product.map(response -> ResponseEntity.ok().body(response)).orElse(ResponseEntity.notFound().build());
+        return product.map(response -> ResponseEntity.ok().body(response))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/products")
@@ -48,8 +48,8 @@ public class ProductController {
     }
 
     @PutMapping("/products/{id}")
-    public ResponseEntity<Product> update(@PathVariable(name = "id") Long id, @RequestBody Product product) {
-
+    public ResponseEntity<Product> update(@PathVariable(name = "id") Long id,
+            @RequestBody Product product) {
         Product productSelect = productService.findById(id).get();
         productSelect.setName(product.getName());
         productSelect.setDescription(product.getDescription());
@@ -68,7 +68,6 @@ public class ProductController {
      * @RequestMapping(value = "/new", method = RequestMethod.GET) public String
      * newProduct(Model model){ model.addAttribute("product", new Product()); return
      * "newProduct"; }
-     * 
      * @PostMapping(value = "/create") public String
      * createProduct(@RequestParam(value = "name") String name, @RequestParam(value
      * = "description") String description, @RequestParam(value = "codeProduct")

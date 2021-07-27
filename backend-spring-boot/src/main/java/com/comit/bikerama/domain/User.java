@@ -31,13 +31,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity(name = "users")
-public class User implements UserDetails,Serializable {
-   
+public class User implements UserDetails, Serializable {
+
    private static final Long serialVersionUID = 1L;
 
    @Id
-   //@SequenceGenerator(name = "id", sequenceName = "id", allocationSize = 1)
-   @GeneratedValue(strategy = GenerationType.IDENTITY /*SEQUENCE*/, generator = "id")
+   // @SequenceGenerator(name = "id", sequenceName = "id", allocationSize = 1)
+   @GeneratedValue(strategy = GenerationType.IDENTITY /* SEQUENCE */, generator = "id")
    @Column(name = "id", nullable = false, updatable = false)
    private Long id;
    @Column(name = "username", nullable = false, unique = true)
@@ -100,8 +100,7 @@ public class User implements UserDetails,Serializable {
    }
 
    /*
-    * @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade =
-    * CascadeType.MERGE)
+    * @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     * 
     * @JsonIgnore private Set<Role> roles = new HashSet<Role>();
     */
@@ -109,13 +108,10 @@ public class User implements UserDetails,Serializable {
    // private Set<ShoppingCart> shopping = new HashSet<>();
 
    /*
-    * public void activate() { this.active = Boolean.TRUE; }
-    * 
-    * public void deactivate() { this.active = Boolean.FALSE; }
-    * 
-    * public boolean haveRole(Role thisRole) { boolean haveRole = false; for (Role
-    * role : roles) { if (role.getType().equals(thisRole)) { haveRole = true;
-    * break; } } return haveRole; }
+    * public void activate() { this.active = Boolean.TRUE; } public void deactivate() { this.active
+    * = Boolean.FALSE; } public boolean haveRole(Role thisRole) { boolean haveRole = false; for
+    * (Role role : roles) { if (role.getType().equals(thisRole)) { haveRole = true; break; } }
+    * return haveRole; }
     */
    // @ManyToOne Ejemplo: muchas cordenadas pueden pertenecer a una embarcacion
 

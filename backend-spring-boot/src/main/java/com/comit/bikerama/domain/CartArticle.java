@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 
 public class CartArticle {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,7 +32,7 @@ public class CartArticle {
     @OneToOne
     private Product product;
 
-    @OneToMany(mappedBy = "cartArticle") 
+    @OneToMany(mappedBy = "cartArticle")
     @JsonIgnore
     private List<ProductToCartArticle> productToCartArticleList;
 

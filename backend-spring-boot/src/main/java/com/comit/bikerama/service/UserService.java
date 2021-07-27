@@ -7,7 +7,7 @@ import com.comit.bikerama.domain.User;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService{
+public interface UserService extends UserDetailsService {
 
     List<User> findAll();
     
@@ -21,7 +21,7 @@ public interface UserService{
     
     //User findByUserName(String userName);
 
-    User findByEmail(String email);
+    //User findByEmail(String email);
 
 
 }

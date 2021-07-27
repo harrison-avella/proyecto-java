@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     @GetMapping("/")
-    public String index(){
+    public String index() {
         return "index";
     }
 
     @GetMapping("/page")
-    public String page(){
+    public String page() {
         return "page";
     }
 }

@@ -15,7 +15,7 @@ public interface CartArticleService {
 
     CartArticle updateCartArticle(CartArticle cartArticle);
 
-   // void deleteCartArticle(CartArticle cartArticle);
+    // void deleteCartArticle(CartArticle cartArticle);
 
     CartArticle addProductToCartArticle(Product product, User user, int quantity);
 

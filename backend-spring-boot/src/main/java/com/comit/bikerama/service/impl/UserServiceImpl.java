@@ -2,26 +2,24 @@ package com.comit.bikerama.service.impl;
 
 import java.util.List;
 import java.util.Optional;
-
 import com.comit.bikerama.domain.User;
 import com.comit.bikerama.repository.RoleRepository;
 import com.comit.bikerama.repository.UserRepository;
 import com.comit.bikerama.service.UserService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import net.minidev.json.JSONObject;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService  {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
+    public final static String USER_NOT_FOUND_MSG = "El usuario con email %s no fue encontrado";
 
     @Autowired
     private UserRepository userRepository;
@@ -45,7 +43,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     public User update(User user) {
-        //how to update in crud?
+        // how to update in crud?
         return userRepository.save(user);
     }
 
@@ -61,24 +59,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return jsonObject.toString();
     }
-/*
-    @Override
-    public User findByUserName(String userName) {
-        return userRepository.findByUserName(userName);
-    }
-    */
 
     @Override
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
+    /*
+     * @Override public User findByUserName(String userName) { return
+     * userRepository.findByUserName(userName); }
+     */
+    /*
+     * @Override public User findByEmail(String email) { return
+     * userRepository.findByEmail(email); }
+     */
+   
     /*
      * @Override public User createUser(User user) { User localUser =
      * this.findByUserName(user.getUserName()); if (localUser == null) { Cart cart =
