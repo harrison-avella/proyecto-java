@@ -1,4 +1,4 @@
-package com.comit.bikerama.utils;
+package com.comit.bikerama.security;
 
 import java.util.function.Predicate;
 import org.springframework.stereotype.Service;

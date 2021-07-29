@@ -1,9 +1,9 @@
 package com.comit.bikerama.controller;
 
-import com.comit.bikerama.domain.Product;
-import com.comit.bikerama.service.impl.ProductServiceImpl;
 import java.util.List;
 import java.util.Optional;
+import com.comit.bikerama.domain.Product;
+import com.comit.bikerama.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class ProductController {
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
-    private ProductServiceImpl productService;
+    private ProductService productService;
 
     @GetMapping("/products")
     public ResponseEntity<?> findAll() {

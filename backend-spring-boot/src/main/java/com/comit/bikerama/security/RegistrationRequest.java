@@ -1,4 +1,4 @@
-package com.comit.bikerama.utils;
+package com.comit.bikerama.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class RegistrationRequest {
 
-    private final String fullName;
+    private final String name;
     private final String email;
     private final String password;
 

@@ -1,4 +1,4 @@
-package com.comit.bikerama.utils;
+package com.comit.bikerama.security;
 
 import com.comit.bikerama.service.UserService;
 import org.springframework.context.annotation.Bean;

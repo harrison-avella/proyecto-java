@@ -40,33 +40,36 @@ public class User implements UserDetails, Serializable {
    @GeneratedValue(strategy = GenerationType.IDENTITY /* SEQUENCE */, generator = "id")
    @Column(name = "id", nullable = false, updatable = false)
    private Long id;
-   @Column(name = "username", nullable = false, unique = true)
-   private String username;
+   //@Column(name = "username", nullable = false, unique = true)
+   //private String username;
+   private String name;
    @Column(name = "email", nullable = false, updatable = false, unique = true)
-   private String email = "";
+   private String email;
    @Column(name = "password", nullable = false)
    private String password;
    @Enumerated(EnumType.STRING)
    private StatusRole statusRole;
-   private boolean locked;
-   private boolean enabled;
+   private boolean locked = false;
+   private boolean enabled = false;
 
-   public User(String username, String email, String password) {
-      this.username = username;
+   public User(String name, String email, String password, StatusRole statusRole) {
+      this.name = name;
       this.email = email;
       this.password = password;
-      this.statusRole = StatusRole.USER;
-      this.locked = false;
-      this.enabled = true;
+      this.statusRole = statusRole;
+      //this.locked = false;
+      //this.enabled = true;
    }
+   
+   private String address;
 
    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "role_id")
    private Role role;
 
-   private String fullName = "";
-   private String address = "";
    private String phone = "";
+  
+  
    // private boolean active = Boolean.TRUE;
    // TODO: Revisar la relacion ManyToOne y ManyToMany
 
@@ -97,6 +100,11 @@ public class User implements UserDetails, Serializable {
    @Override
    public boolean isEnabled() {
       return enabled;
+   }
+
+   @Override
+   public String getUsername() {
+      return email;
    }
 
    /*

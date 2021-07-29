@@ -1,10 +1,7 @@
 package com.comit.bikerama.controller;
 
 import com.comit.bikerama.domain.User;
-import com.comit.bikerama.service.impl.RoleServiceImpl;
-import com.comit.bikerama.service.impl.UserServiceImpl;
-import com.comit.bikerama.utils.StatusRole;
-
+import com.comit.bikerama.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +23,7 @@ public class UserController {
      * @Autowired private AuthenticationManager authenticationManager;
      */
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     /*
      * @Autowired private RoleService roleService;

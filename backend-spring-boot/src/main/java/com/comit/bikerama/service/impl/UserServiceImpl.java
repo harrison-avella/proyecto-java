@@ -3,7 +3,6 @@ package com.comit.bikerama.service.impl;
 import java.util.List;
 import java.util.Optional;
 import com.comit.bikerama.domain.User;
-import com.comit.bikerama.repository.RoleRepository;
 import com.comit.bikerama.repository.UserRepository;
 import com.comit.bikerama.service.UserService;
 import org.slf4j.Logger;
@@ -11,22 +10,27 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import lombok.AllArgsConstructor;
 import net.minidev.json.JSONObject;
 
 @Service
-public class UserServiceImpl implements UserService  {
+@AllArgsConstructor
+public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     public final static String USER_NOT_FOUND_MSG = "El usuario con email %s no fue encontrado";
 
     @Autowired
-    private UserRepository userRepository;
-
+    private final UserRepository userRepository;
     @Autowired
-    private RoleRepository roleRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    /*
+     * @Autowired private RoleRepository roleRepository;
+     */
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
@@ -62,8 +66,24 @@ public class UserServiceImpl implements UserService  {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
+        return userRepository.findByEmail(email).orElseThrow(
+                () -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
+    }
+
+    @Override
+    public String signUpUser(User user) {
+        boolean userExist = userRepository.findByEmail(user.getEmail()).isPresent();
+        if (userExist) {
+            throw new IllegalArgumentException("El usuario ya existe");
+        }
+        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+
+        user.setPassword(encodedPassword);
+
+        userRepository.save(user);
+        
+        // TODO: send confirmacion tocken
+        return "Funciona";
     }
 
 
@@ -72,19 +92,18 @@ public class UserServiceImpl implements UserService  {
      * userRepository.findByUserName(userName); }
      */
     /*
-     * @Override public User findByEmail(String email) { return
-     * userRepository.findByEmail(email); }
+     * @Override public User findByEmail(String email) { return userRepository.findByEmail(email); }
      */
-   
+
     /*
      * @Override public User createUser(User user) { User localUser =
-     * this.findByUserName(user.getUserName()); if (localUser == null) { Cart cart =
-     * new Cart(); cart.setUser(user); user.setCart(cart);
+     * this.findByUserName(user.getUserName()); if (localUser == null) { Cart cart = new Cart();
+     * cart.setUser(user); user.setCart(cart);
      * 
      * localUser = this.save(user);
      * 
-     * }else{ logger.info("El usuario {}, existe, no es posible el registro",
-     * user.getUserName()); } return localUser; }
+     * }else{ logger.info("El usuario {}, existe, no es posible el registro", user.getUserName()); }
+     * return localUser; }
      */
 
 }

@@ -18,6 +18,8 @@ public interface UserService extends UserDetailsService {
     User update(User user);
     
     String delete(Long id);
+
+    String signUpUser(User user);
     
     //User findByUserName(String userName);
 
