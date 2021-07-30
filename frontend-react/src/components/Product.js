@@ -26,21 +26,21 @@ export default class Product extends Component {
   componentDidMount() {
     const id  = this.props.match.params.id;
     if (id) {
-      this.getProductById(id);
+      this.findProductById(id);
     }
   }
 
-  getProductById(id) {
-    axios
-      .get(`http://localhost:8080/api/products/${id}`)
-      .then(response => {
+  findProductById(id) {
+    fetch(`http://localhost:8080/api/products/${id}`)
+      .then(response => response.json())
+      .then(product => {
         this.setState({
-          id: response.data.id,
-          name: response.data.name,
-          description: response.data.description,
-          price: response.data.price,
-          stock: response.data.stock,
-          supplier: response.data.supplier,
+          id: product.id,
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          stock: product.stock,
+          supplier: product.supplier,
         });
       })
       .catch(error => {
@@ -73,7 +73,6 @@ export default class Product extends Component {
       .catch(error => {
         console.log(error);
       });
-      this.setState(this.initialState());
   }
 
 

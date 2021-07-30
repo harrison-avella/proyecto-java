@@ -70,7 +70,7 @@ export default class ProductList extends Component {
                 {this.state.products.length > 0 ? (
                   this.state.products.map((product, index) => (
                     <tr key={index}>
-                      <td>{product.id}</td>
+                      <td>{index+1}</td>
                       <td>{product.name}</td>
                       <td>{product.description}</td>
                       <td>{product.price}</td>

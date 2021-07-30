@@ -6,6 +6,9 @@ import Footer from "./components/Footer";
 import Product from "./components/Product";
 import ProductList from "./components/ProductList";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
+
 
 function App() {
   return (
@@ -18,6 +21,8 @@ function App() {
             <Route path="/addProduct/" component={Product} />
             <Route path="/editProduct/:id" component={Product} />
             <Route path="/productList" component={ProductList} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
           </Switch>
           <Footer />
         </div>
