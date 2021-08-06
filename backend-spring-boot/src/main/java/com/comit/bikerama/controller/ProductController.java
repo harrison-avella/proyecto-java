@@ -38,7 +38,8 @@ public class ProductController {
     @GetMapping("/products/{id}")
     public ResponseEntity<?> findById(@PathVariable(name = "id") Long id) {
         Optional<Product> product = productService.findById(id);
-        return product.map(response -> ResponseEntity.ok().body(response)).orElse(ResponseEntity.notFound().build());
+        return product.map(response -> ResponseEntity.ok().body(response))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/products")
@@ -48,7 +49,8 @@ public class ProductController {
     }
 
     @PutMapping("/products/{id}")
-    public ResponseEntity<Product> update(@PathVariable(name = "id") Long id, @RequestBody Product product) {
+    public ResponseEntity<Product> update(@PathVariable(name = "id") Long id,
+            @RequestBody Product product) {
 
         Product productSelect = productService.findById(id).get();
         productSelect.setName(product.getName());
@@ -64,18 +66,4 @@ public class ProductController {
     public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
         return ResponseEntity.ok(productService.delete(id));
     }
-    /*
-     * @RequestMapping(value = "/new", method = RequestMethod.GET) public String
-     * newProduct(Model model){ model.addAttribute("product", new Product()); return
-     * "newProduct"; }
-     * 
-     * @PostMapping(value = "/create") public String
-     * createProduct(@RequestParam(value = "name") String name, @RequestParam(value
-     * = "description") String description, @RequestParam(value = "codeProduct")
-     * String code, Model model){ Product product = new Product();
-     * product.setNombre(nombre); product.setDescription(description);
-     * product.setCodeProduct(code); product = productService.save(product);
-     * model.addAttribute("product", product); return "seeProduct"; }
-     */
-
 }
