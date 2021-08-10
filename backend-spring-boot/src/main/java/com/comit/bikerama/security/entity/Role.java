@@ -1,5 +1,6 @@
 package com.comit.bikerama.security.entity;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import com.comit.bikerama.security.enums.RoleName;
 
+@Entity
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
-
-
 
 @Entity
 public class User {
@@ -29,14 +28,15 @@ public class User {
     @NotNull
     private String password;
     @NotNull
-    @ManyToMany // muchos a muchos
-    @JoinTable(name = "user", joinColumns = @JoinColumn(name = "user_id"),
+    @ManyToMany(fetch = FetchType.EAGER) // muchos a muchos
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     public User() {}
 
-    public User(String name, String username, String email, String password) {
+    public User(@NotNull String name, @NotNull String username, String email,
+            String password) {
         this.name = name;
         this.username = username;
         this.email = email;
