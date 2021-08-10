@@ -1,13 +1,15 @@
 package com.comit.bikerama.domain;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -33,13 +35,9 @@ public class Product implements Serializable {
 // private BigDecimal iva = new BigDecimal("1.21");
 
 /*
- * private BigDecimal getPrice(){ return price; }
- * 
- * public BigDecimal getPriceWithIva(){ return price.multiply(iva); }
- * 
- * public BigDecimal getPriceOutOfIva(){ return getPrice(); }
- * 
- * public boolean isThereStored(){ return cantCurrent.compareTo(cantMin) <=0; }
- * // el compareTo da cero si son iguales -1 si es menos y 1 si es mayor
- * 
+ * private BigDecimal getPrice(){ return price; } public BigDecimal
+ * getPriceWithIva(){ return price.multiply(iva); } public BigDecimal
+ * getPriceOutOfIva(){ return getPrice(); } public boolean isThereStored(){
+ * return cantCurrent.compareTo(cantMin) <=0; } // el compareTo da cero si son
+ * iguales -1 si es menos y 1 si es mayor
  */

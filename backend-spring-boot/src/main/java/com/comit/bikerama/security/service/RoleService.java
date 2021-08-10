@@ -17,4 +17,8 @@ public class RoleService {
     public Optional<Role> findByRoleName(RoleName roleName) {
         return roleRepository.findByRoleName(roleName);
     }
+
+    public void save(Role role) {
+        roleRepository.save(role);
+    }
 }

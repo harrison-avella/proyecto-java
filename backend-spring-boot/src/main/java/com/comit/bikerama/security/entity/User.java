@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+
 
 
 @Entity
@@ -17,19 +19,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @NotNull
     private String name;
-    @Column(nullable = false, unique = true)
+    @NotNull
+    @Column(unique = true)
     private String username;
-    @Column(nullable = false)
+    @NotNull
     private String email;
-    @Column(nullable = false)
+    @NotNull
     private String password;
-    @Column(nullable = false)
+    @NotNull
     @ManyToMany // muchos a muchos
     @JoinTable(name = "user", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<Role>();
+    private Set<Role> roles = new HashSet<>();
 
     public User() {}
 

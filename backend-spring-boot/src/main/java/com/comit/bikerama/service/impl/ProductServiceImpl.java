@@ -11,10 +11,9 @@ import com.comit.bikerama.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.minidev.json.JSONObject;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
@@ -29,7 +28,7 @@ public class ProductServiceImpl implements ProductService{
     public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
     }
-    
+
 
     @Override
     public Product save(Product product) {
@@ -43,28 +42,28 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public String delete(Long id) {
-        JSONObject jsonObject = new JSONObject();
-		try {
-			productRepository.deleteById(id);
-			jsonObject.put("message", "Book deleted successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return jsonObject.toString();
+        // JSONObject jsonObject = new JSONObject();
+        try {
+            productRepository.deleteById(id);
+            // jsonObject.put("message", "Book deleted successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+        // jsonObject.toString();
     }
 
     @Override
     public List<Product> findByName(String name) {
         return productRepository.findByName(name);
     }
-/*
-    @Override
-    public List<Product> findByCategory(String category) {
-        return productRepository.findByCategory(category);
-    }
-*/
-    /*public Product save(Product product){
-        return productRepository.saveAllAndFlush(product);
-    }*/
+    /*
+     * @Override public List<Product> findByCategory(String category) { return
+     * productRepository.findByCategory(category); }
+     */
+    /*
+     * public Product save(Product product){ return
+     * productRepository.saveAllAndFlush(product); }
+     */
 
 }
