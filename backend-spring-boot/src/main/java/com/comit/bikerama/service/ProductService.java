@@ -2,23 +2,26 @@ package com.comit.bikerama.service;
 
 import java.util.List;
 import java.util.Optional;
-
-import com.comit.bikerama.domain.Product;
+import com.comit.bikerama.entity.Product;
 
 public interface ProductService {
+
     List<Product> findAll();
 
     Optional<Product> findById(Long id);
-    
-    Product save(Product product);
 
-    Product update(Product product);
+    Optional<Product> findByName(String name);
 
-    // TODO: Revicar esta implementação
-    String delete(Long id);
+    void save(Product product);
 
-    List<Product> findByName(String name);
+    void delete(Long id);
 
-   // List<Product> findByCategory(String category);
+    boolean existsById(Long id);
+
+    boolean existsByName(String name);
+
+    //Product update(Product product);
+
+    // List<Product> findByCategory(String category);
 
 }

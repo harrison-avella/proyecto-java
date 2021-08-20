@@ -35,7 +35,7 @@ public class JwtProvider {
                 .setIssuedAt(new Date())
                 .setExpiration(
                         new Date(new Date().getTime() + expiration * 1000))
-                .signWith(SignatureAlgorithm.ES512, secret).compact();
+                .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
     public String getUsernameFromToken(String token) {

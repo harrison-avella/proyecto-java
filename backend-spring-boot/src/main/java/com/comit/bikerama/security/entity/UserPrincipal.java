@@ -14,7 +14,8 @@ public class UserPrincipal implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(String name, String username, String email, String password,
+    public UserPrincipal(String name, String username, String email,
+            String password,
             Collection<? extends GrantedAuthority> authorities) {
         this.name = name;
         this.username = username;
@@ -24,11 +25,11 @@ public class UserPrincipal implements UserDetails {
     }
 
     public static UserPrincipal build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
+        List<GrantedAuthority> authorities = user.getRoles().stream().map(
+                role -> new SimpleGrantedAuthority(role.getRoleName().name()))
                 .collect(Collectors.toList());
-        return new UserPrincipal(user.getName(), user.getUsername(), user.getEmail(),
-                user.getPassword(), authorities);
+        return new UserPrincipal(user.getName(), user.getUsername(),
+                user.getEmail(), user.getPassword(), authorities);
     }
 
     @Override

@@ -1,9 +1,7 @@
 package com.comit.bikerama.repository;
 
-import java.util.List;
-
-import com.comit.bikerama.domain.Product;
-
+import java.util.Optional;
+import com.comit.bikerama.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,9 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    
-    //List<Product> findByCategory(String category);
+    Optional<Product> findByName(String name);
 
-    List<Product> findByName(String name);
+    boolean existsByName(String name);
+
+    // List<Product> findByCategory(String category);
 
 }
